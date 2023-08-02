@@ -22,6 +22,13 @@ class UserService {
     return rta;
   }
 
+  async find(email) {
+    const rta = await models.User.findOne({
+      where: { email }
+    });
+    return rta;
+  }
+
   async findOne(id) {
     const user = await models.User.findByPk(id);
     if (!user) {
@@ -35,6 +42,7 @@ class UserService {
     const rta = await user.update(changes);
     return rta;
   }
+
 
   async delete(id) {
     const user = await this.findOne(id);
